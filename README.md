@@ -1,1 +1,1 @@
-THIS IS A DYNAMIC NAVBAR CREATED USING NEXT.JS AND TAILWINDCSS. FOR TESTING PURPOSES.
+This is a dynamic navbar created using Next.js and TailwindCSS. For testing purposes.
