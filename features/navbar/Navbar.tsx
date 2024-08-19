@@ -35,14 +35,14 @@ const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] 
                     
                     {/* "Expand" button for small screens */}
                     <button
-                    className="md:hidden bg-gray-900 p-2 rounded-md text-white hover:bg-gray-800"
+                    className="sm:hidden bg-gray-900 p-2 rounded-md text-white hover:bg-gray-800"
                     onClick={handleClick}
                     >
                         {open ? "×" : "Expand"}
                     </button>
 
-                    {/* Content for md screens */}
-                    <div className="hidden md:block">
+                    {/* Content for screens sm and above */}
+                    <div className="hidden sm:block">
                         <div className="flex justify-center">
                             {items.map((item) => {
                                 return (
@@ -60,10 +60,10 @@ const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] 
                 </div>
             </div>
 
-            {/* expanded portion (for small screens) */}
+            {/* expanded portion for small screens */}
             {open ? (
                         <div
-                        className="md:hidden"
+                        className="sm:hidden"
                         >
                             {items.map((item) => {
                                 return (
