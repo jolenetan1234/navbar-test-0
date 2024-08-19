@@ -15,10 +15,10 @@ const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] 
 
   return (
     <div className="Navbar">
-        <nav className="bg-amber-300 max-w-6xl">
+        <nav className="bg-amber-300">
 
             {/* this div contains logo and buttons */}
-            <div className="mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* flexbox to position picture on the left and group of buttons on the right */}
                 <div className="flex items-center justify-between h-16">
                     {/* picture */}
