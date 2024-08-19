@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Item } from "./navbar.types";
+import { Item } from "./types/Item";
 import Image from "next/image";
 
 const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] }) => {
@@ -15,43 +15,35 @@ const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] 
 
   return (
     <div className="Navbar">
-        <nav className="bg-amber-300">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="bg-amber-300 max-w-6xl">
+
+            {/* this div contains logo and buttons */}
+            <div className="mx-auto px-4 sm:px-6 lg:px-8">
+                {/* flexbox to position picture on the left and group of buttons on the right */}
                 <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                            <a
-                            href="https://github.com/jolenetan1234"
-                            className="text-black">
-                                <Image 
-                                src="/images/header-img.jpg"
-                                alt="Github"
-                                width={30}
-                                height={30}
-                                />
-                            </a>
-                        </div>
-                    </div>
+                    {/* picture */}
+                    <a
+                    href="https://github.com/jolenetan1234"
+                    >
+                        <Image 
+                        src="/images/header-img.jpg"
+                        alt="Github"
+                        width={30}
+                        height={30}
+                        />
+                    </a>
                     
-                    <div
-                    className="items-center">
-                        <button
-                        className="border bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-800"
-                        onClick={handleClick}
-                        >
-                            {open ? "×" : "Expand"}
-                        </button>
-                    </div>
+                    {/* "Expand" button for small screens */}
+                    <button
+                    className="md:hidden bg-gray-900 p-2 rounded-md text-white hover:bg-gray-800"
+                    onClick={handleClick}
+                    >
+                        {open ? "×" : "Expand"}
+                    </button>
 
-                </div>
-            </div>
-
-            {open ? (
-                    <div
-                    className="">
-                        <div
-                        className="px-2 pt-2 pb-3 space-y-1 sm:px-3"
-                        >
+                    {/* Content for md screens */}
+                    <div className="hidden md:block">
+                        <div className="flex justify-center">
                             {items.map((item) => {
                                 return (
                                     <a
@@ -60,14 +52,33 @@ const Navbar = ({ children, items }: { children: React.ReactNode, items: Item[] 
                                     className="text-black hover:bg-black hover:text-white rounded-lg p-2 block">
                                         {item.text}
                                     </a>
-                                );
+                                )
                             })}
                         </div>
                     </div>
-            ) : 
-            ""
-            }
 
+                </div>
+            </div>
+
+            {/* expanded portion (for small screens) */}
+            {open ? (
+                        <div
+                        className="md:hidden"
+                        >
+                            {items.map((item) => {
+                                return (
+                                <a
+                                key={item.link}
+                                href={item.link}
+                                className="shadow-md border-t border-yellow-950 text-black hover:bg-black hover:text-white p-2 block">
+                                    {item.text}
+                                </a>
+                                );
+                            })}
+                        </div>
+                    )
+                : ""
+            }
         </nav>
         {children}
     </div>
